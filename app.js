@@ -9,6 +9,7 @@ window.onload = function(){
     var playerOne = 'X';
     var playerTwo = 'O';
     var currPlayer = playerOne;
+    var prevPlayer = '';
     var gameOver = false;
     let moveCounter = 0;
 
@@ -62,21 +63,26 @@ function setCell() {
         this.innerText = currPlayer;
 
         if(currPlayer == playerOne){
-            currPlayer = playerTwo;
+        currPlayer = playerTwo;
+        prevPlayer = playerOne;
         }
         else{
-            currPlayer = playerOne;
+        currPlayer = playerOne;
+        prevPlayer = playerTwo;
         }
+
         //change message to player's turn
-        if(currPlayer === playerOne){
+        
+            if(currPlayer === playerOne){
             setMessage("Player X's Turn");
-        }
-        else if (currPlayer === playerTwo && gameOver === false) {
+            }
+            else if (currPlayer === playerTwo && gameOver === false) {
             setMessage("Player O's Turn");
-        }
-        if(moveCounter === 9 && gameOver != true){
+            }
+            if(moveCounter === 9 && gameOver != true){
             setMessage("It's a TIE. Try again!");
         }
+
         checkWinner();
 }
 //checks winner horizontally and vertically
@@ -89,7 +95,7 @@ function checkWinner(){
                 cell.classList.add('winner');
             }
             gameOver = true;
-            setMessage(`Player ${currPlayer} has won!`);
+            setMessage(`Player ${prevPlayer} has won!`);
             return;
         }
     }
@@ -101,7 +107,7 @@ function checkWinner(){
                 cell.classList.add('winner');
             }
             gameOver = true;
-            setMessage(`Player ${currPlayer} has won!`);
+            setMessage(`Player ${prevPlayer} has won!`);
             return;
         }
     }
@@ -116,7 +122,7 @@ function checkWinner(){
         cell.classList.add("winner");
 
         gameOver = true;
-        setMessage(`Player ${currPlayer} has won!`);
+        setMessage(`Player ${prevPlayer} has won!`);
         return;
     }
     //diagnal
