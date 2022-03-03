@@ -75,7 +75,7 @@ function setCell() {
             setMessage("Player O's Turn");
         }
         if(moveCounter === 9 && gameOver != true){
-            setMessage("It's a TIE. Refresh to try again!");
+            setMessage("It's a TIE. Try again!");
         }
         checkWinner();
 }
